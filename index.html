@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune 8 Ball</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow: hidden;
+        }
+
+        #ball {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: #0a0a0a;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 -4px 16px rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.1s ease;
+            user-select: none;
+        }
+
+        #ball:active {
+            transform: scale(0.98);
+        }
+
+        #triangle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 0;
+            height: 0;
+            border-left: 90px solid transparent;
+            border-right: 90px solid transparent;
+            border-bottom: 156px solid #1e3a8a;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #triangle.visible {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        #message-container {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            text-align: center;
+        }
+
+        #fortune {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        #mood {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 10px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="ball">
+        <div id="triangle">
+            <div id="message-container">
+                <div id="fortune"></div>
+                <div id="mood"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fortunes = [
+            { text: "The signs point to yes, obviously.", mood: "Aligned" },
+            { text: "Outcome looks suspiciously favorable.", mood: "Optimistic" },
+            { text: "The universe already green-lit this.", mood: "Assured" },
+            { text: "All indications say you're fine.", mood: "Grounded" },
+            { text: "This works out, somehow.", mood: "Hopeful" },
+            { text: "The vibe confirms your theory.", mood: "Validated" },
+            { text: "Future you is unbothered.", mood: "Unbothered" },
+            { text: "Luck is currently on your side.", mood: "Lucky" },
+            { text: "This timeline is acceptable.", mood: "Relieved" },
+            { text: "Manifestation status: in progress.", mood: "Patiently Confident" },
+            { text: "Chaos is permitted at this time.", mood: "Chaotic Neutral" },
+            { text: "Unhinged action yields results.", mood: "Reckless" },
+            { text: "The path forward is messy.", mood: "Resolved" },
+            { text: "Impulse leads to progress.", mood: "Impulsive" },
+            { text: "Structure is not required right now.", mood: "Freeform" },
+            { text: "A reckless move benefits you.", mood: "Bold" },
+            { text: "The goblin energy is aligned.", mood: "Ferally Focused" },
+            { text: "This works best if rushed.", mood: "Urgent" },
+            { text: "Order will return later.", mood: "Temporarily Unhinged" },
+            { text: "Proceed without overthinking.", mood: "Decisive" }
+        ];
+
+        const ball = document.getElementById('ball');
+        const triangle = document.getElementById('triangle');
+        const fortuneEl = document.getElementById('fortune');
+        const moodEl = document.getElementById('mood');
+
+        let isVisible = false;
+        let lastFortuneIndex = -1;
+
+        function getRandomFortune() {
+            let index;
+            do {
+                index = Math.floor(Math.random() * fortunes.length);
+            } while (index === lastFortuneIndex && fortunes.length > 1);
+            
+            lastFortuneIndex = index;
+            return fortunes[index];
+        }
+
+        function showFortune() {
+            const fortune = getRandomFortune();
+            fortuneEl.textContent = fortune.text;
+            moodEl.textContent = fortune.mood;
+            triangle.classList.add('visible');
+            isVisible = true;
+        }
+
+        function hideFortune() {
+            triangle.classList.remove('visible');
+            isVisible = false;
+        }
+
+        ball.addEventListener('click', () => {
+            if (isVisible) {
+                hideFortune();
+            } else {
+                showFortune();
+            }
+        });
+    </script>
+</body>
+</html>
