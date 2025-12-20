@@ -120,15 +120,6 @@
             font-size: 13px;
             font-weight: 500;
             line-height: 1.4;
-            margin-bottom: 8px;
-        }
-
-        #mood {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 10px;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -140,40 +131,141 @@
             </svg>
             <div id="message-container">
                 <div id="fortune"></div>
-                <div id="mood"></div>
             </div>
         </div>
     </div>
 
     <script>
         const fortunes = [
-            { text: "The signs point to yes, obviously.", mood: "Aligned" },
-            { text: "Outcome looks suspiciously favorable.", mood: "Optimistic" },
-            { text: "The universe already green-lit this.", mood: "Assured" },
-            { text: "All indications say you're fine.", mood: "Grounded" },
-            { text: "This works out, somehow.", mood: "Hopeful" },
-            { text: "The vibe confirms your theory.", mood: "Validated" },
-            { text: "Future you is unbothered.", mood: "Unbothered" },
-            { text: "Luck is currently on your side.", mood: "Lucky" },
-            { text: "This timeline is acceptable.", mood: "Relieved" },
-            { text: "Manifestation status: in progress.", mood: "Patiently Confident" },
-            { text: "Chaos is permitted at this time.", mood: "Chaotic Neutral" },
-            { text: "Unhinged action yields results.", mood: "Reckless" },
-            { text: "The path forward is messy.", mood: "Resolved" },
-            { text: "Impulse leads to progress.", mood: "Impulsive" },
-            { text: "Structure is not required right now.", mood: "Freeform" },
-            { text: "A reckless move benefits you.", mood: "Bold" },
-            { text: "The goblin energy is aligned.", mood: "Ferally Focused" },
-            { text: "This works best if rushed.", mood: "Urgent" },
-            { text: "Order will return later.", mood: "Temporarily Unhinged" },
-            { text: "Proceed without overthinking.", mood: "Decisive" }
+            "Trust your gut",
+            "The stars are aligned",
+            "Your future looks bright",
+            "Follow your own path",
+            "Do what you love",
+            "My sources say yes",
+            "Good things are ahead",
+            "Pursue your passion",
+            "You are growing",
+            "Signs point to yes",
+            "Fuck yes!",
+            "Try again",
+            "Sure",
+            "Damn straight",
+            "The vibes are good",
+            "Fuck it!",
+            "You do you",
+            "You're killin' it",
+            "Hell yeah!",
+            "Absolutely",
+            "Yes, definitely",
+            "Signs say yes",
+            "Sources say yes",
+            "Outlook good",
+            "Most likely",
+            "You got this",
+            "Trust yourself",
+            "Follow through",
+            "Do it now",
+            "Just do it",
+            "Better not tell",
+            "Cannot predict",
+            "Proceed with care",
+            "Take the leap",
+            "Hold your horses",
+            "Small wins",
+            "Big energy",
+            "New doors open",
+            "Good things ahead",
+            "Keep going",
+            "Keep the faith",
+            "Trust your gut",
+            "The vibes align",
+            "Stars are aligned",
+            "Change is coming",
+            "Embrace change",
+            "Recalibrate",
+            "Shift your focus",
+            "Protect your peace",
+            "Opportunity knocks",
+            "Follow joy",
+            "Pursue passion",
+            "You're growing",
+            "Level up",
+            "Burn bright",
+            "Ride the wave",
+            "Stay curious",
+            "Be bold",
+            "Aim higher",
+            "Quiet the noise",
+            "Take a breath",
+            "All systems go",
+            "Full speed ahead",
+            "Not the one",
+            "Pass for now",
+            "Revisit later",
+            "Why not?",
+            "Sparks will fly",
+            "The universe nods",
+            "Orbit aligns",
+            "Cosmos says yes",
+            "Galactic green light",
+            "Star-synced",
+            "Thumbs up",
+            "Astral thumbs up",
+            "Make noise",
+            "Chaos-approved",
+            "Change the game",
+            "Go break norms",
+            "Passion approved",
+            "Give yourself grace",
+            "Permission granted",
+            "Most likely",
+            "No doubt",
+            "Go ahead",
+            "Maybe soon",
+            "Damn straight",
+            "Make noise",
+            "Wild card",
+            "Full throttle",
+            "Go wild",
+            "Chaos approved",
+            "Do the math",
+            "Trust the data",
+            "Test and learn",
+            "Go for it",
+            "Green light",
+            "Make it happen",
+            "Let's go",
+            "Onward",
+            "Do the thing",
+            "Game on",
+            "Maybe later",
+            "Ask again later",
+            "Give it time",
+            "Could be",
+            "Time will tell",
+            "Watch this space",
+            "Try again",
+            "Hold up",
+            "Hold steady",
+            "Revisit this",
+            "Wait",
+            "Not sure yet",
+            "See how it goes",
+            "Take your time",
+            "Reflect",
+            "Damn right",
+            "Test it",
+            "Nope",
+            "Maybe",
+            "Perhaps",
+            "It is certain"
         ];
 
         const ball = document.getElementById('ball');
         const triangleContainer = document.getElementById('triangle-container');
         const messageContainer = document.getElementById('message-container');
         const fortuneEl = document.getElementById('fortune');
-        const moodEl = document.getElementById('mood');
 
         let isVisible = false;
         let lastFortuneIndex = -1;
@@ -194,8 +286,7 @@
             isAnimating = true;
 
             const fortune = getRandomFortune();
-            fortuneEl.textContent = fortune.text;
-            moodEl.textContent = fortune.mood;
+            fortuneEl.textContent = fortune;
             
             ball.classList.add('shaking');
             
