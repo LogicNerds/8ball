@@ -99,6 +99,9 @@
 
         #triangle-svg {
             display: block;
+            width: min(120px, 20vw, 20vh);
+            height: auto;
+            opacity: 0.85;
         }
 
         #message-container {
@@ -106,7 +109,7 @@
             top: 65%;
             left: 50%;
             transform: translate(-50%, -40%);
-            width: 80px;
+            width: min(65px, 11vw, 11vh);
             text-align: center;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -118,7 +121,7 @@
 
         #fortune {
             color: #ffffff;
-            font-size: 13px;
+            font-size: min(11px, 2vw, 2vh);
             font-weight: 500;
             line-height: 1.4;
         }
@@ -127,7 +130,7 @@
 <body>
     <div id="ball">
         <div id="triangle-container">
-            <svg id="triangle-svg" width="150" height="126" viewBox="0 0 180 156">
+            <svg id="triangle-svg" viewBox="0 0 180 156">
                 <polygon points="90,0 180,156 0,156" fill="#1e3a8a" />
             </svg>
             <div id="message-container">
